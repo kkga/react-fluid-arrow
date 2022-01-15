@@ -1,25 +1,24 @@
 import { FC } from "react";
 
-const curveStyle: React.CSSProperties = {
-  strokeWidth: 2,
-  stroke: "dodgerblue",
-  strokeLinecap: "round",
-  fill: "none"
-};
-
-const pointStyle: React.CSSProperties = {
-  fill: "dodgerblue"
-};
-
-const controlPointStyle: React.CSSProperties = {
-  fill: "#ccc"
-};
-
-const handleStyle: React.CSSProperties = {
-  strokeWidth: 1,
-  stroke: "#ccc",
-  strokeLinecap: "round",
-  strokeDasharray: "4,4"
+const styles: { [key: string]: React.CSSProperties } = {
+  curve: {
+    strokeWidth: 2,
+    stroke: "dodgerblue",
+    strokeLinecap: "round",
+    fill: "none"
+  },
+  handle: {
+    strokeWidth: 1,
+    stroke: "#ccc",
+    strokeLinecap: "round",
+    strokeDasharray: "4,4"
+  },
+  point: {
+    fill: "dodgerblue"
+  },
+  controlPoint: {
+    fill: "#ccc"
+  }
 };
 
 type Point = {
@@ -76,33 +75,33 @@ export const Arrow: FC<ArrowProps> = ({
       preserveAspectRatio="xMidYMid meet"
     >
       <path
-        style={curveStyle}
+        style={styles.curve}
         d={`M${start.x},${start.y}
           C${cp1.x},${cp1.y} 
           ${cp2.x},${cp2.y} 
           ${end.x},${end.y}`}
       />
-      <circle style={pointStyle} cx={start.x} cy={start.y} r="6" />
-      <circle style={pointStyle} cx={end.x} cy={end.y} r="6" />
+      <circle style={styles.point} cx={start.x} cy={start.y} r="6" />
+      <circle style={styles.point} cx={end.x} cy={end.y} r="6" />
 
       {showControlPoints && (
         <>
           <line
-            style={handleStyle}
+            style={styles.handle}
             x1={start.x}
             y1={start.y}
             x2={cp1.x}
             y2={cp1.y}
           />
           <line
-            style={handleStyle}
+            style={styles.handle}
             x1={end.x}
             y1={end.y}
             x2={cp2.x}
             y2={cp2.y}
           />
-          <circle style={controlPointStyle} cx={cp1.x} cy={cp1.y} r="3" />
-          <circle style={controlPointStyle} cx={cp2.x} cy={cp2.y} r="3" />
+          <circle style={styles.controlPoint} cx={cp1.x} cy={cp1.y} r="3" />
+          <circle style={styles.controlPoint} cx={cp2.x} cy={cp2.y} r="3" />
         </>
       )}
     </svg>
