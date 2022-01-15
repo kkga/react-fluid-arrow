@@ -52,17 +52,14 @@ export const Arrow: FC<ArrowProps> = ({
     Math.max(distance(start, end) * offsetMult, minOffset);
 
   // get positions for bezier curve control points
-  const getCp1 = (start: Point, end: Point) => ({
+  const cp1 = {
     x: start.x + calcOffsetX(start, end),
     y: start.y
-  });
-  const getCp2 = (start: Point, end: Point) => ({
+  };
+  const cp2 = {
     x: end.x + -calcOffsetX(start, end),
     y: end.y
-  });
-
-  const cp1 = getCp1(start, end);
-  const cp2 = getCp2(start, end);
+  };
 
   return (
     <svg
